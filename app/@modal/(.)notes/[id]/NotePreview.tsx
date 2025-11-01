@@ -13,8 +13,10 @@ const NotePreview = ({ params }: Props) => {
   const { id } = params;
   const router = useRouter();
   const { data } = useQuery({
-    queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
+      queryKey: ["note", id],
+  queryFn: () => fetchNoteById(id),
+  refetchOnMount: false,
+  staleTime: 1000 * 60 * 5,
   });
 
   const closeModal = useCallback(() => {

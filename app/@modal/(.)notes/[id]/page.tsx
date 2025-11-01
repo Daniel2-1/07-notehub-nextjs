@@ -7,20 +7,20 @@ import { fetchNoteById } from "@/lib/api";
 import NotePreview from "./NotePreview";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default async function NoteDetails({ params }: Props) {
   const { id } = await params;
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-          <NotePreview params={{ id }}/>
+      <NotePreview params={{ id }} />
     </HydrationBoundary>
   );
 }

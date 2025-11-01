@@ -4,9 +4,7 @@ import { fetchNoteById } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
-export default function NoteDetails() {
-  const { id } = useParams<{ id: string }>();
-
+export default function NoteDetails({ id }: { id: string }) {
   const {
     data: response,
     isError,
@@ -15,7 +13,7 @@ export default function NoteDetails() {
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
     enabled: !!id,
-    refetchOnMount: false
+    refetchOnMount: false,
   });
 
   if (isLoading) {

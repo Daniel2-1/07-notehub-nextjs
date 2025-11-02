@@ -48,6 +48,7 @@ const NotePreview = ({ params }: Props) => {
           <h2>{data.title}</h2>
           <p>{data.content}</p>
           <p>{new Date(data.createdAt).toLocaleString()}</p>
+          <p><strong>Tag:</strong>{data.tag}</p>
           <button onClick={closeModal}>Close</button>
         </div>
       )}
